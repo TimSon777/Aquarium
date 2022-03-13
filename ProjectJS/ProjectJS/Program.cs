@@ -10,7 +10,8 @@ services.AddSingleton<Aquarium>();
 var app = builder.Build();
 
 app.UseHttpsRedirection()
-    .UseFileServer();
+    .UseFileServer()
+    .UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
