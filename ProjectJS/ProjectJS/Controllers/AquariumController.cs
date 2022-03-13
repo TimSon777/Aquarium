@@ -5,6 +5,7 @@ using ProjectJS.Domain.Entities.Fish;
 namespace ProjectJS.Controllers;
 
 [ApiController]
+[Route("api/[controller]/[action]")]
 public class AquariumController : ControllerBase
 {
     private readonly Aquarium _aquarium;

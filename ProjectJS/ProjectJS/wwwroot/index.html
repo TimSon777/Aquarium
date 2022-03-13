@@ -13,7 +13,7 @@
         </div>
 
         <div class="add-fish">
-            <form class="add-fish-form" method="post" action="/Aquarium">
+            <form class="add-fish-form" method="post" action="/api/Aquarium/CreateFish">
                 <p class="field-group">
                     <label for="type-fish"> Fish type </label>
                         <select class="type-selector" id="type-fish" name="typefish">
@@ -29,15 +29,15 @@
                 <button class="button submit-button">Add fish</button>
             </form>
             <div class="delete-buttons">
-                <form method="post" action="/DeleteAll">
+                <form method="post" action="/api/DeleteAll">
                     <button class="button delete-all-btn">Delete all</button>
                 </form>
 
-                <form method="post" action="/DeleteRandom">
+                <form method="post" action="/api/DeleteRandom">
                     <button class="button delete-rand-btn">Delete random</button>
                 </form>
 
-                <form method="post" action="/DeleteLast">
+                <form method="post" action="/api/DeleteLast">
                     <button class="button delete-last-btn">Delete last</button>
                 </form>
             </div>
