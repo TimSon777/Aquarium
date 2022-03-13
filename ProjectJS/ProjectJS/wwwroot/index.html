@@ -7,6 +7,48 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+    <main class="wrap">
+        <div class="background">
+            <!-- <img src="images/background.jpg" width="800" height="500" alt="Аквариум"> -->
+        </div>
+
+        <div class="add-fish">
+            <form class="add-fish-form" method="post" action="/Aquarium">
+                <p class="field-group">
+                    <label for="type-fish"> Fish type </label>
+                        <select class="type-selector" id="type-fish" name="typefish">
+                            <option value="1">Task fish</option>
+                            <option value="2">Thread fish</option>
+                        </select>
+                </p>
+                <p class="field-group">
+                    <label for="speed">Fish speed</label>
+                    <input class="speed-input" type="number" id="speed" name="speed" min="1" max="10">
+                </p>
+
+                <button class="button submit-button">Add fish</button>
+            </form>
+            <div class="delete-buttons">
+                <form method="post" action="/DeleteAll">
+                    <button class="button delete-all-btn">Delete all</button>
+                </form>
+
+                <form method="post" action="/DeleteRandom">
+                    <button class="button delete-rand-btn">Delete random</button>
+                </form>
+
+                <form method="post" action="/DeleteLast">
+                    <button class="button delete-last-btn">Delete last</button>
+                </form>
+            </div>
+
+            <div class="sharks">
+                <img class="shark1" width="100" height="100" src="images/shark1.png" alt="Shark">
+                <img class="shark2" width="100" height="100" src="images/shark2.png" alt="Shark">
+            </div>
+        </div>
+        
+        
+    </main>
 </body>
 </html>
