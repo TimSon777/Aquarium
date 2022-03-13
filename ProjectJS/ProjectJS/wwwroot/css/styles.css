@@ -1,0 +1,102 @@
+
+body {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.background {
+    background-image: url("../images/background.jpg");
+    width: 800px;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.add-fish {
+    position: relative;
+    display: flex;
+    width: 300px;
+    text-align: center;
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 90px 50px 0 50px;
+    flex-wrap: wrap;
+}
+
+.add-fish-form {
+    margin: 0 auto;
+    width: 40%;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-group label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #0b0b34;
+}
+
+.type-selector {
+    margin: 0 auto;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.speed-input {
+    margin: 0 auto;
+    width: 110px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.button {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 120px;
+    min-height: 30px;
+    text-transform: uppercase;
+    border-radius: 20px
+}
+
+.submit-button {
+    background-color: #77d99e;
+    border: none;
+}
+
+.delete-buttons {
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.delete-all-btn {
+    margin-bottom: 30px;
+    background-color: rgba(92, 155, 171, 0.73);
+}
+
+.delete-rand-btn {
+    margin-bottom: 30px;
+    background-color: #82bcd0;
+}
+
+.delete-last-btn {
+    background-color: rgb(159, 207, 220);
+}
+
+.sharks {
+    position: absolute;
+    top: 310px;
+    right: 130px;
+}
