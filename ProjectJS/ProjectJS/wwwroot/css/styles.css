@@ -68,12 +68,17 @@ body {
     width: 120px;
     min-height: 30px;
     text-transform: uppercase;
-    border-radius: 20px
+    border-radius: 20px;
+    cursor: pointer;
 }
 
 .submit-button {
     background-color: #77d99e;
     border: none;
+}
+
+.submit-button:hover {
+    background-color: #67be89;
 }
 
 .delete-buttons {
@@ -86,13 +91,25 @@ body {
     background-color: rgba(92, 155, 171, 0.73);
 }
 
+.delete-all-btn:hover {
+    background-color: rgba(92, 155, 171, 1);
+}
+
 .delete-rand-btn {
     margin-bottom: 30px;
     background-color: #82bcd0;
 }
 
+.delete-rand-btn:hover {
+    background-color: #75a8b9;
+}
+
 .delete-last-btn {
     background-color: rgb(159, 207, 220);
+}
+
+.delete-last-btn:hover {
+    background-color: rgb(142, 185, 194);
 }
 
 .sharks {

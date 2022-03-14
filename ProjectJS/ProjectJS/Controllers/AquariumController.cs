@@ -29,7 +29,7 @@ public class AquariumController : ControllerBase
     }
     
     [HttpPost]
-    public BaseFish CreateFish(int speed, TypeFish typeFish)
+    public BaseFish CreateFish( int speed, TypeFish typeFish)
     {
         var fish = BaseFish.CreateFish(typeFish, speed, _aquarium);
         _aquarium.Fishes.Add(fish);

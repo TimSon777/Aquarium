@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/script.js" defer></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -13,7 +12,7 @@
         </div>
 
         <div class="add-fish">
-            <form class="add-fish-form" method="post" action="/api/Aquarium/CreateFish">
+            <form class="add-fish-form" id="add-fish-form" method="post" action="/api/Aquarium/CreateFish">
                 <p class="field-group">
                     <label for="type-fish"> Fish type </label>
                         <select class="type-selector" id="type-fish" name="typefish">
@@ -29,15 +28,15 @@
                 <button class="button submit-button">Add fish</button>
             </form>
             <div class="delete-buttons">
-                <form method="post" action="/api/DeleteAll">
+                <form method="post" action="/api/Aquarium/DeleteAll" id="delete-all-form">
                     <button class="button delete-all-btn">Delete all</button>
                 </form>
 
-                <form method="post" action="/api/DeleteRandom">
+                <form method="post" action="/api/Aquarium/DeleteRandom" id="delete-random-form">
                     <button class="button delete-rand-btn">Delete random</button>
                 </form>
 
-                <form method="post" action="/api/DeleteLast">
+                <form method="post" action="/api/Aquarium/DeleteLast" id="delete-last-form">
                     <button class="button delete-last-btn">Delete last</button>
                 </form>
             </div>
@@ -48,5 +47,8 @@
             </div>
         </div>
     </main>
+
+    <script src="js/script.js"></script>
+
 </body>
 </html>
