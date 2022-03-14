@@ -5,11 +5,11 @@ namespace ProjectJS.Domain.Entities;
 
 public class Aquarium
 {
-    public int Height { get; private set; } = 500;
+    public int Height { get; private set; }
 
-    public int Width { get; private set; } = 800;
+    public int Width { get; private set; }
 
-    public List<BaseFish> Fishes;
+    public readonly List<BaseFish> Fishes = new();
 
     public void ChangeSize(int height, int width)
     {
