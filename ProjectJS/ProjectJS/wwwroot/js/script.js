@@ -1,69 +1,92 @@
-const Direction = {Left: 1, Right: 2};
-
-class BaseFish {
-    constructor(id, speed, direction) {
-        this.id = 0;
-        this.speed = speed;
-        this.direction = direction;
-        this.x = 0;
-        this.y = 0;
-    }
-
-    /*sayHi() {
-        alert(this.name);
-    }*/
+function displayFish(fish) {
+    let div = `<div class="fish" id="fish-id-${fish.id}" style="position:absolute; top: ${fish.currentLocation.y}px; left: ${fish.currentLocation.x}px">Рыба ${fish.threadId}</div>`
+    document.getElementById("aquarium").innerHTML += div
 }
 
-function sendForm (form) {
-    
-    fetch("/api/Aquarium/CreateFish",
-        {
-            method: "POST",
-            body: JSON.stringify(form.elements)
+function deleteElement(e) {
+    e.parentNode.removeChild(e)
+}
+
+async function createFish() {
+    let speed = parseInt(document.getElementById("speed").value)
+    let typeFish = document.getElementById("type-fish").value
+
+    await fetch(`/api/Aquarium/CreateFish?typeFish=${typeFish}&speed=${speed}`, {method: "GET"})
+        .then(async r => await r.json())
+        .then(fish => displayFish(fish))
+}
+
+async function deleteAll() {
+    await fetch("/api/Aquarium/DeleteAll", {method: "GET"})
+        .then(() => {
+            let fishes = document.querySelectorAll('.fish');
+            fishes.forEach(fish => {
+                deleteElement(fish)
+            })
         })
-        .then(r => alert(r))
-        
-    
-   /* let httpRequest = new XMLHttpRequest();
-    httpRequest.open("POST", "/api/Aquarium/CreateFish");
-    httpRequest.onload = function(event) {
-        alert("Success, server responded with: " + event.target.response);
-    };
-    let formData = new FormData(form);
-    httpRequest.send(formData);*/
-    
 }
 
-function deleteAll (form) {
-    let httpRequest = new XMLHttpRequest();
-    httpRequest.open("POST", "/api/Aquarium/DeleteAll");
-    httpRequest.onload = function(event) {
-        alert("Success, server responded with: " + event.target.response);
-    };
-    let formData = new FormData(form);
-    httpRequest.send(formData);
+async function deleteLast() {
+    await fetch("/api/Aquarium/DeleteLast", {method: "GET"})
+        .then(async r => await r.json())
+        .then(id => {
+            if (id !== 0) {
+                deleteElement(document.getElementById(`fish-id-${id}`))
+            }
+        })
 }
 
-document.onreadystatechange = function () {
-    if (document.readyState === "complete"){
-        
-        
-        
-        let formCreateFish = document.getElementById("add-fish-form");
-        formCreateFish.onsubmit = function (e) {
-            e.preventDefault()
-            sendForm(formCreateFish)
-        }
-        
-        
-        
-        let formDeleteAll = document.getElementById("delete-all-form");
-        formDeleteAll.onsubmit = function (e) {
-            e.preventDefault()
-            deleteAll(formDeleteAll)
-        }
+async function deleteRandom() {
+    await fetch("/api/Aquarium/DeleteRandomFish", {method: "GET"})
+        .then(async r => await r.json())
+        .then(id => {
+            if (id !== 0) {
+                deleteElement(document.getElementById(`fish-id-${id}`))
+            }
+        })
+}
 
-      
+function sendForm(form, selector) {
+    form.onsubmit = async function (e) {
+        e.preventDefault()
+        await selector()
     }
 }
 
+function changeLocationAndId(fishes) {
+    fishes.forEach(fish => {
+        let divFish = document.getElementById(`fish-id-${fish.id}`);
+        if (divFish !== null) {
+            divFish.style.left = fish.currentLocation.x + "px";
+            divFish.innerText = `Рыба ${fish.threadId}`
+        }
+    })
+}
+
+async function startAquarium() {
+    await fetch('/api/Aquarium/GetAll',
+        {method: "GET"})
+        .then(async r => await r.json())
+        .then(fishes => fishes.forEach(fish => displayFish(fish)))
+
+    const aquariumConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/aquarium")
+        .build();
+
+    setInterval(() => {
+        aquariumConnection.invoke("SendFishes")
+            .then(fishes => changeLocationAndId(fishes))
+    }, 15)
+
+    aquariumConnection.start();
+}
+
+document.onreadystatechange = async function () {
+    if (document.readyState === "complete") {
+        await startAquarium()
+        sendForm(document.getElementById("add-fish-form"), createFish)
+        sendForm(document.getElementById("delete-all-form"), deleteAll)
+        sendForm(document.getElementById("delete-last-form"), deleteLast)
+        sendForm(document.getElementById("delete-random-form"), deleteRandom)
+    }
+}

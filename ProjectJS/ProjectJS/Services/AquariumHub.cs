@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using ProjectJS.Domain.Entities;
+using ProjectJS.Domain.Entities.Fish;
 
 namespace ProjectJS.Services;
 
@@ -12,8 +13,6 @@ public class AquariumHub : Hub
         _aquarium = aquarium;
     }
 
-    public async Task SendAsync()
-    {
-        await Clients.All.SendAsync("", _aquarium.Fishes);
-    }
+    public IEnumerable<BaseFish> SendFishes() 
+        => _aquarium.Fishes;
 }

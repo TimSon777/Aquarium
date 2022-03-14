@@ -2,16 +2,21 @@
 
 public class TaskFish : BaseFish
 {
-    public TaskFish(int speed, Aquarium aquarium) 
-        : base(speed, aquarium)
-    { }
-    
+    public TaskFish(int speed, Aquarium aquarium)
+        : base(speed, aquarium, TypeFish.TaskFish)
+    {
+    }
+
     public override void Swim()
     {
-        while (Cts.IsCancellationRequested)
+        Task.Run(async () =>
         {
-            var task = Task.Run(RecalculateLocation);
-            ThreadId = task.Id;
-        }
+            while (!Cts.IsCancellationRequested)
+            {
+                ThreadId = Environment.CurrentManagedThreadId;
+                await Task.Delay(15);
+                RecalculateLocation();
+            }
+        });
     }
 }

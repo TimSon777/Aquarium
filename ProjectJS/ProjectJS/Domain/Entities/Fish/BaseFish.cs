@@ -9,6 +9,8 @@ public abstract class BaseFish
     public Direction Direction { get; set; } = Direction.Right;
     public Point CurrentLocation { get; set; }
 
+    public TypeFish TypeFish { get; }
+
     public int ThreadId { get; set; }
 
     public readonly CancellationTokenSource Cts;
@@ -16,17 +18,18 @@ public abstract class BaseFish
     private static int _autoIncrement;
     public static int AutoIncrement => ++_autoIncrement;
 
-    public readonly int Id;
+    public int Id { get; }
     public void KillFish()
     {
         Cts.Cancel();
     }
 
     public abstract void Swim();
-    protected BaseFish(int speed, Aquarium aquarium)
+    protected BaseFish(int speed, Aquarium aquarium, TypeFish typeFish)
     {
         Speed = speed;
         Aquarium = aquarium;
+        TypeFish = typeFish;
         Id = AutoIncrement;
         CurrentLocation = new Point(0, new Random().Next(Aquarium.Height));
         Cts = new CancellationTokenSource();

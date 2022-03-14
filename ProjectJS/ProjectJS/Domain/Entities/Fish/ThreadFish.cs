@@ -5,7 +5,7 @@ public class ThreadFish : BaseFish
     private readonly Thread _thread;
 
     public ThreadFish(int speed, Aquarium aquarium) 
-        : base(speed, aquarium)
+        : base(speed, aquarium, TypeFish.ThreadFish)
     {
         _thread = new Thread(A);
         ThreadId = _thread.ManagedThreadId;
@@ -18,9 +18,10 @@ public class ThreadFish : BaseFish
 
     private void A()
     {
-        while (Cts.IsCancellationRequested)
+        while (!Cts.IsCancellationRequested)
         {
             RecalculateLocation();
+            Thread.Sleep(15);
         }
     }
 }
