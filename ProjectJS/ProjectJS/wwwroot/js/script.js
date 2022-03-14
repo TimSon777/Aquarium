@@ -1,5 +1,7 @@
 function displayFish(fish) {
-    let div = `<div class="fish" id="fish-id-${fish.id}" style="position:absolute; top: ${fish.currentLocation.y}px; left: ${fish.currentLocation.x}px">Рыба ${fish.threadId}</div>`
+    let div = `<div class="fish" id="fish-id-${fish.id}" style="position:absolute; top: ${fish.currentLocation.y}px; left: ${fish.currentLocation.x}px">
+                    <p>${fish.threadId}</p> Рыба
+                </div>`
     document.getElementById("aquarium").innerHTML += div
 }
 
@@ -10,7 +12,7 @@ function deleteElement(e) {
 async function createFish() {
     let speed = parseInt(document.getElementById("speed").value)
     let typeFish = document.getElementById("type-fish").value
-
+    
     await fetch(`/api/Aquarium/CreateFish?typeFish=${typeFish}&speed=${speed}`, {method: "GET"})
         .then(async r => await r.json())
         .then(fish => displayFish(fish))
