@@ -12,8 +12,8 @@ body {
 
 .background {
     background-image: url("../images/background.jpg");
-    width: 800px;
-    height: 500px;
+    width: 900px;
+    height: 650px;
     background-size: cover;
     background-repeat: no-repeat;
     box-sizing: border-box;
@@ -82,7 +82,7 @@ body {
 }
 
 .delete-buttons {
-    padding: 40px;
+    margin: 43px auto 0;
     box-sizing: border-box;
 }
 
@@ -115,5 +115,22 @@ body {
 .sharks {
     position: absolute;
     top: 310px;
-    right: 130px;
+    right: 110px;
+}
+
+.fish {
+    position: absolute;
+}
+
+.shark {
+    position: relative;
+}
+
+.threadId {
+    position: absolute;
+    top: 60px;
+    left: 65px;
+    z-index: 1;
+    font-size: 20px;
+    font-weight: bold;
 }

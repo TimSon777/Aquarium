@@ -1,7 +1,14 @@
 function displayFish(fish) {
+    let img = '';
+    if (fish.typeFish === 1) 
+        img = `<img id="img-id-${fish.id}" class="shark shark1" width="100" height="100" src="images/shark3.png" alt="Shark">`
+    else 
+        img = `<img id="img-id-${fish.id}" class="shark shark2" width="100" height="100" src="images/shark2.png" alt="Shark">`
+    
     let div = `<div class="fish" id="fish-id-${fish.id}" style="position:absolute; top: ${fish.currentLocation.y}px; left: ${fish.currentLocation.x}px">
-                    <p>${fish.threadId}</p> Рыба
-                </div>`
+                    <p class="threadId" id="thread-fish-${fish.id}">${fish.threadId}</p> 
+                    ${img}
+               </div>`
     document.getElementById("aquarium").innerHTML += div
 }
 
@@ -60,7 +67,13 @@ function changeLocationAndId(fishes) {
         let divFish = document.getElementById(`fish-id-${fish.id}`);
         if (divFish !== null) {
             divFish.style.left = fish.currentLocation.x + "px";
-            divFish.innerText = `Рыба ${fish.threadId}`
+            let threadFish = document.getElementById(`thread-fish-${fish.id}`);
+            threadFish.innerText = `${fish.threadId}`;
+            let image = document.getElementById(`img-id-${fish.id}`);
+            if (divFish.style.left === "800px")
+                image.style.transform = 'scale(-1, 1)';
+            else if (divFish.style.left === "0px")
+                image.style.transform = 'scale(1, 1)';
         }
     })
 }
