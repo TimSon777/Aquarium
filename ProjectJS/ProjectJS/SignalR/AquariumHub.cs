@@ -2,7 +2,7 @@
 using ProjectJS.Domain.Entities;
 using ProjectJS.Domain.Entities.Fish;
 
-namespace ProjectJS.Services;
+namespace ProjectJS.SignalR;
 
 public class AquariumHub : Hub
 {

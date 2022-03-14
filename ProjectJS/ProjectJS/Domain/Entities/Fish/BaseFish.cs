@@ -6,7 +6,6 @@ public abstract class BaseFish
 {
     protected const int Delay = 15;
     public readonly int Speed;
-    public readonly Aquarium Aquarium;
     public Direction Direction { get; set; } = Direction.Right;
     public Point CurrentLocation { get; set; }
 
@@ -30,7 +29,6 @@ public abstract class BaseFish
     protected BaseFish(int speed, Aquarium aquarium, TypeFish typeFish)
     {
         Speed = speed;
-        Aquarium = aquarium;
         TypeFish = typeFish;
         Id = AutoIncrement;
         CurrentLocation = new Point(0, Random.Shared.Next(Aquarium.Height));

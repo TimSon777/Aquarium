@@ -1,5 +1,5 @@
 using ProjectJS.Domain.Entities;
-using ProjectJS.Services;
+using ProjectJS.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
