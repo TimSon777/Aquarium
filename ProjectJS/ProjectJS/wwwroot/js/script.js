@@ -76,7 +76,7 @@ async function startAquarium() {
         .build();
 
     setInterval(() => {
-        aquariumConnection.invoke("SendFishes")
+        aquariumConnection.invoke("GetFishes")
             .then(fishes => changeLocationAndId(fishes))
     }, 15)
 

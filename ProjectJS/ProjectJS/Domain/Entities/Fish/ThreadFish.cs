@@ -7,21 +7,18 @@ public class ThreadFish : BaseFish
     public ThreadFish(int speed, Aquarium aquarium) 
         : base(speed, aquarium, TypeFish.ThreadFish)
     {
-        _thread = new Thread(A);
+        _thread = new Thread(Move);
         ThreadId = _thread.ManagedThreadId;
     }
 
-    public override void Swim()
-    {
-        _thread.Start();
-    }
+    public override void Swim() => _thread.Start();
 
-    private void A()
+    private void Move()
     {
         while (!Cts.IsCancellationRequested)
         {
+            Thread.Sleep(Delay);
             RecalculateLocation();
-            Thread.Sleep(15);
         }
     }
 }

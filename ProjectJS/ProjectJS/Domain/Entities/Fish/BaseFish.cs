@@ -4,6 +4,7 @@ namespace ProjectJS.Domain.Entities.Fish;
 
 public abstract class BaseFish
 {
+    protected const int Delay = 15;
     public readonly int Speed;
     public readonly Aquarium Aquarium;
     public Direction Direction { get; set; } = Direction.Right;
@@ -16,9 +17,10 @@ public abstract class BaseFish
     public readonly CancellationTokenSource Cts;
 
     private static int _autoIncrement;
-    public static int AutoIncrement => ++_autoIncrement;
+    private static int AutoIncrement => ++_autoIncrement;
 
     public int Id { get; }
+    
     public void KillFish()
     {
         Cts.Cancel();
@@ -31,7 +33,7 @@ public abstract class BaseFish
         Aquarium = aquarium;
         TypeFish = typeFish;
         Id = AutoIncrement;
-        CurrentLocation = new Point(0, new Random().Next(Aquarium.Height));
+        CurrentLocation = new Point(0, Random.Shared.Next(Aquarium.Height));
         Cts = new CancellationTokenSource();
     }
 

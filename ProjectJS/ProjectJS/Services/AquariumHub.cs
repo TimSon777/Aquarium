@@ -8,11 +8,7 @@ public class AquariumHub : Hub
 {
     private readonly Aquarium _aquarium;
 
-    public AquariumHub(Aquarium aquarium)
-    {
-        _aquarium = aquarium;
-    }
+    public AquariumHub(Aquarium aquarium) => _aquarium = aquarium;
 
-    public IEnumerable<BaseFish> SendFishes() 
-        => _aquarium.Fishes;
+    public IEnumerable<BaseFish> GetFishes() => _aquarium.Fishes;
 }

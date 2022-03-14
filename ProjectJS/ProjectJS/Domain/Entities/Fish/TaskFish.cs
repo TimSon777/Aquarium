@@ -4,8 +4,7 @@ public class TaskFish : BaseFish
 {
     public TaskFish(int speed, Aquarium aquarium)
         : base(speed, aquarium, TypeFish.TaskFish)
-    {
-    }
+    { }
 
     public override void Swim()
     {
@@ -14,7 +13,7 @@ public class TaskFish : BaseFish
             while (!Cts.IsCancellationRequested)
             {
                 ThreadId = Environment.CurrentManagedThreadId;
-                await Task.Delay(15);
+                await Task.Delay(Delay);
                 RecalculateLocation();
             }
         });

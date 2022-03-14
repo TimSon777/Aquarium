@@ -15,19 +15,6 @@ public class AquariumController : ControllerBase
         _aquarium = aquarium;
     }
 
-    [HttpPost]
-    public IActionResult SetAquariumSize(int height, int width)
-    {
-        if (height <= 0 || width <= 0)
-        {
-            return BadRequest();
-        }
-        
-        _aquarium.ChangeSize(height, width);
-        
-        return new OkResult();
-    }
-    
     [HttpGet]
     public BaseFish CreateFish(int speed, TypeFish typeFish)
     {
