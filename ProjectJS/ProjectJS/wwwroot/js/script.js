@@ -70,9 +70,9 @@ function changeLocationAndId(fishes) {
             let threadFish = document.getElementById(`thread-fish-${fish.id}`);
             threadFish.innerText = `${fish.threadId}`;
             let image = document.getElementById(`img-id-${fish.id}`);
-            if (divFish.style.left === "800px")
+            if (divFish.style.left === "800px" || fish.direction === 1)
                 image.style.transform = 'scale(-1, 1)';
-            else if (divFish.style.left === "0px")
+            else if (divFish.style.left === "0px" || fish.direction === 2)
                 image.style.transform = 'scale(1, 1)';
         }
     })
