@@ -3,7 +3,7 @@
 public class TaskFish : BaseFish
 {
     public TaskFish(int speed, Aquarium aquarium)
-        : base(speed, aquarium, TypeFish.TaskFish)
+        : base(speed, TypeFish.TaskFish)
     { }
 
     public override void Swim()

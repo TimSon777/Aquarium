@@ -21,8 +21,6 @@ async function createFish() {
     let typeFish = document.getElementById("type-fish").value
     
     await fetch(`/api/Aquarium/CreateFish?typeFish=${typeFish}&speed=${speed}`, {method: "GET"})
-        .then(async r => await r.json())
-        .then(fish => displayFish(fish))
 }
 
 async function deleteAll() {
@@ -74,6 +72,9 @@ function changeLocationAndId(fishes) {
                 image.style.transform = 'scale(-1, 1)';
             else if (divFish.style.left === "0px" || fish.direction === 2)
                 image.style.transform = 'scale(1, 1)';
+        }
+        else {
+            displayFish(fish);
         }
     })
 }

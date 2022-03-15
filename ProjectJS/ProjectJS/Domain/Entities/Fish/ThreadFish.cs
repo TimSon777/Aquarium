@@ -5,7 +5,7 @@ public class ThreadFish : BaseFish
     private readonly Thread _thread;
 
     public ThreadFish(int speed, Aquarium aquarium) 
-        : base(speed, aquarium, TypeFish.ThreadFish)
+        : base(speed, TypeFish.ThreadFish)
     {
         _thread = new Thread(Move);
         ThreadId = _thread.ManagedThreadId;

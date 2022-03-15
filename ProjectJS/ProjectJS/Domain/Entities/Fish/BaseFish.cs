@@ -19,14 +19,15 @@ public abstract class BaseFish
     private static int AutoIncrement => ++_autoIncrement;
 
     public int Id { get; }
-    
+
     public void KillFish()
     {
         Cts.Cancel();
     }
 
     public abstract void Swim();
-    protected BaseFish(int speed, Aquarium aquarium, TypeFish typeFish)
+
+    protected BaseFish(int speed, TypeFish typeFish)
     {
         Speed = speed;
         TypeFish = typeFish;
@@ -45,20 +46,18 @@ public abstract class BaseFish
 
     protected void RecalculateLocation()
     {
-        int newX;
+        var k = Direction == Direction.Left ? -1 : 1;
+        var x = CurrentLocation.X + k * Speed;
+        var newX = x >= Aquarium.Width
+            ? Aquarium.Width
+            : x < 0 ? 0 : x;
 
-        if (Direction == Direction.Right)
+        Direction = newX switch
         {
-            var x = CurrentLocation.X + Speed;
-            newX = x >= Aquarium.Width ? Aquarium.Width : x;
-            if (newX == Aquarium.Width) Direction = Direction.Left;
-        }
-        else
-        {
-            var x = CurrentLocation.X - Speed;
-            newX = x < 0 ? 0 : x;
-            if (newX == 0) Direction = Direction.Right;
-        }
+            Aquarium.Width => Direction.Left,
+            0 => Direction.Right,
+            _ => Direction
+        };
 
         CurrentLocation = CurrentLocation with
         {
